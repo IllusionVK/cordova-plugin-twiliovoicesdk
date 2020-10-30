@@ -389,7 +389,7 @@ static NSString *const kTwimlParamTo = @"To";
                                                @"callSid":callInvite.callSid
                                                };
         if (self.enableCallKit) {
-            [self reportIncomingCallFrom:(self.maskIncomingPhoneNumber ? @"Unknown" : callInvite.from) withUUID:callInvite.uuid];
+            [self reportIncomingCallFrom:(self.maskIncomingPhoneNumber ? @"Unknown" : callInvite.customParameters[@"caller_name"]) withUUID:callInvite.uuid];
         } else {
             [self showNotification:(self.maskIncomingPhoneNumber ? @"Unknown" : callInvite.from)];
             //play ringtone
