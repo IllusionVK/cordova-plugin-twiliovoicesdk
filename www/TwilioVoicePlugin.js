@@ -7,6 +7,10 @@
         }
     }
 
+    TwilioPlugin.TwilioVoiceClient.prototype.unregisterPushNotification = function() {
+        Cordova.exec(null,null,"TwilioVoicePlugin","unregisterPushNotification",null);
+    }
+
     TwilioPlugin.TwilioVoiceClient.prototype.call = function(token, params) {
         Cordova.exec(null,null,"TwilioVoicePlugin","call",[token, params]);
     }

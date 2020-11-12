@@ -197,6 +197,21 @@ static NSString *const kTwimlParamTo = @"To";
     }
 }
 
+- (void) unregisterPushNotification:(CDVInvokedUrlCommand*)command {
+    NSLog(@"Unregister access token: %@",self.self.accessToken);
+    NSLog(@"Unregister device push token: %@",self.self.pushDeviceTokenData);
+    [TwilioVoice unregisterWithAccessToken:self.accessToken
+                           deviceTokenData:self.pushDeviceTokenData
+                                completion:^(NSError * _Nullable error) {
+        if (error) {
+                      NSLog(@"Error unregistering Voice Client for VOIP Push: %@", [error localizedDescription]);
+                  } else {
+                      NSLog(@"Unegistered Voice Client for VOIP Push");
+                  }
+                  self.pushDeviceTokenData = nil;
+    }];
+}
+
 - (void) disconnect:(CDVInvokedUrlCommand*)command {
     if (self.callInvite && self.call && self.call.state == TVOCallStateRinging) {
         [self.callInvite reject];
