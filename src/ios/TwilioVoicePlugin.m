@@ -536,7 +536,7 @@ static NSString *const kTwimlParamTo = @"To";
 }
 
 - (void) javascriptErrorback:(NSError *)error {
-    NSDictionary *object    = [NSDictionary dictionaryWithObjectsAndKeys:[error localizedDescription], @"message", nil];
+    NSDictionary *object    = [NSDictionary dictionaryWithObjectsAndKeys:[error localizedDescription], @"message", [NSNumber numberWithInteger:error.code], @"code", nil];
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:object];
     [result setKeepCallbackAsBool:YES];
     
